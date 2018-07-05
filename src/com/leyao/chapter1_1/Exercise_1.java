@@ -1,5 +1,9 @@
 package com.leyao.chapter1_1;
 
+/**
+ * @author leyao
+ * @version 2018-7-4
+ */
 public class Exercise_1 {
     public static void main(String[] args) {
         System.out.println("a: " + ((0 + 15) / 2));
