@@ -1,7 +1,5 @@
 package com.leyao.chapter1_1;
 
-import java.util.Arrays;
-
 /**
  * @author leyao
  * @version 2018-7-4
