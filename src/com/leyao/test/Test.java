@@ -6,5 +6,6 @@ public class Test {
         int b = 14 / -3;
         System.out.println(a);
         System.out.println(b);
+
     }
 }
