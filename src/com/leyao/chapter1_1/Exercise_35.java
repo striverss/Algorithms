@@ -34,7 +34,7 @@ public class Exercise_35 {
         for (int k = 2; k < dist1.length; k++) {
             // System.out.println("dist1 " + dist1[k] + ", " + k);
             // System.out.println("dist2 " + dist2[k] + ", " + k);
-            if (Math.abs(dist1[k] - dist2[k]) > 0.001) {
+            if (Math.abs(dist1[k] - dist2[k]) >= 0.001) {
                 return false;
             }
         }
