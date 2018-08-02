@@ -1,7 +1,6 @@
 package com.leyao.test;
 
-import com.leyao.util.Bag;
-import com.leyao.util.Stack;
+import com.leyao.chapter1_3.Stack;
 
 import java.util.Iterator;
 
