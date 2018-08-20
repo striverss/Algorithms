@@ -1,6 +1,7 @@
 package com.leyao.chapter1_3;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * @author leyao
@@ -54,12 +55,24 @@ public class Stack<T> implements Iterable<T> {
     }
 
     /*
+    返回栈中最近添加的元素，不弹出该元素
+     */
+    public T peek() {
+        if (isEmpty()) throw new NoSuchElementException("stack do not have any element");
+        return first.t;
+    }
+
+    /*
     重写符合栈规则的迭代器，结合链表
      */
+    @Override
     public Iterator<T> iterator() {
         return new ListIterator<>();
     }
 
+    /*
+    符合本数据类型的迭代器
+     */
     private class ListIterator<T> implements Iterator<T> {
         private Node current = first;
 
@@ -77,7 +90,6 @@ public class Stack<T> implements Iterable<T> {
 
         @Override
         public void remove() {
-
         }
     }
 }

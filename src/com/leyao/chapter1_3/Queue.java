@@ -6,7 +6,7 @@ import java.util.Iterator;
  * @author leyao
  * @version 2018-8-1
  */
-public class Queue<T> {
+public class Queue<T> implements Iterable<T> {
     private Node first;//用链表头代表队列头
     private Node last;//用链表尾代表队列尾
     private int N;
