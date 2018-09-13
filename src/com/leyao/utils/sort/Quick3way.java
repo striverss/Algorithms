@@ -1,13 +1,11 @@
 package com.leyao.utils.sort;
 
 /**
- * 自底向上的归并排序
+ * 三向切分的快速排序
  * @author leyao
  * @version 2018-9-12
  */
-public class MergeBU {
-    private static Comparable[] aux;
-
+public class Quick3way {
     private static boolean less(Comparable a, Comparable b) {
         if (a.compareTo(b) < 0) return true;
         return false;
@@ -33,32 +31,28 @@ public class MergeBU {
         return true;
     }
 
-    public static void merge(Comparable[] a, int lo, int mid, int hi) {
-        int i = lo;
-        int j = mid + 1;
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = a[k];
+    private static void sort(Comparable[] a, int lo, int hi) {
+        if (hi <= lo) return;
+        int lt = lo;
+        int gt = hi;
+        int i = lo + 1;
+        Comparable v = a[lo];
+        while (i <= gt) {
+            int tmp = a[i].compareTo(v);
+            if (tmp < 0) exch(a, lt++, i++);
+            else if (tmp > 0) exch(a, gt--, i);
+            else i++;
         }
-        for (int k = lo; k <= hi; k++) {
-            if (i > mid) a[k] = aux[j++];
-            else if (j > hi) a[k] = aux[i++];
-            else if (less(aux[i], aux[j])) a[k] = aux[i++];
-            else a[k] = aux[j++];
-        }
+        sort(a, lo, lt - 1);
+        sort(a, gt + 1, hi);
     }
 
     public static void sort(Comparable[] a) {
-        int N = a.length;
-        aux = new Comparable[N];
-        for (int sz = 1; sz < N; sz = sz + sz) {
-            for (int lo = 0; lo < N - sz; lo = lo + sz + sz) {
-                merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
-            }
-        }
+        sort(a, 0, a.length - 1);
     }
 
     public static void main(String[] args) {
-        Integer[] a = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        Integer[] a = {9, 8, 5, 5, 5, 3, 2, 1, 0, 4};
         sort(a);
         assert isSorted(a);
         show(a);

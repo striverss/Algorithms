@@ -1,13 +1,11 @@
 package com.leyao.utils.sort;
 
 /**
- * 自底向上的归并排序
+ * 希尔排序（改进的插入排序）
  * @author leyao
- * @version 2018-9-12
+ * @version 2018-9-11
  */
-public class MergeBU {
-    private static Comparable[] aux;
-
+public class Shell {
     private static boolean less(Comparable a, Comparable b) {
         if (a.compareTo(b) < 0) return true;
         return false;
@@ -33,27 +31,19 @@ public class MergeBU {
         return true;
     }
 
-    public static void merge(Comparable[] a, int lo, int mid, int hi) {
-        int i = lo;
-        int j = mid + 1;
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = a[k];
-        }
-        for (int k = lo; k <= hi; k++) {
-            if (i > mid) a[k] = aux[j++];
-            else if (j > hi) a[k] = aux[i++];
-            else if (less(aux[i], aux[j])) a[k] = aux[i++];
-            else a[k] = aux[j++];
-        }
-    }
-
     public static void sort(Comparable[] a) {
         int N = a.length;
-        aux = new Comparable[N];
-        for (int sz = 1; sz < N; sz = sz + sz) {
-            for (int lo = 0; lo < N - sz; lo = lo + sz + sz) {
-                merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
+        int h = 1;
+        while (h < N / 3) {
+            h = h * 3 + 1;
+        }
+        while (h >= 1) {
+            for (int i = h; i < N; i++) {
+                for (int j = i; j >= h && less(a[j], a[j - h]); j = j - h) {
+                    exch(a, j, j - h);
+                }
             }
+            h = h / 3;
         }
     }
 
