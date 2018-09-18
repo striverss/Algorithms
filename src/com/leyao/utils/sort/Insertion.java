@@ -34,14 +34,14 @@ public class Insertion {
     public static void sort(Comparable[] a) {
         int N = a.length;
         for (int i = 1; i < N; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
-                exch(a, j, j - 1);
+            for (int j = i; j > 0; j--) {
+                if (less(a[j], a[j - 1])) exch(a, j, j - 1);
             }
         }
     }
 
     public static void main(String[] args) {
-        Integer[] a = {5, 3, 1};
+        Integer[] a = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
         sort(a);
         assert isSorted(a);
         show(a);

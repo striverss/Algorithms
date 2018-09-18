@@ -7,8 +7,7 @@ package com.leyao.utils.sort;
  */
 public class Selection {
     private static boolean less(Comparable a, Comparable b) {
-        if (a.compareTo(b) < 0) return true;
-        return false;
+        return a.compareTo(b) < 0;
     }
 
     private static void exch(Comparable[] a, int i, int j) {
@@ -33,12 +32,12 @@ public class Selection {
 
     public static void sort(Comparable[] a) {
         int N = a.length;
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < a.length; i++) {
             int min = i;
             for (int j = i + 1; j < N; j++) {
                 if (less(a[j], a[min])) min = j;
             }
-            exch(a, i, min);
+            exch(a, min, i);
         }
     }
 

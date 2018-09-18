@@ -26,14 +26,14 @@ public class MaxPQ<Key extends Comparable<Key>> {
 
     // 插入函数
     public void insert(Key v) {
-        pq[N++] = v;
+        pq[++N] = v;
         swim(N);
     }
 
     // 删除并返回最大元素
     public Key delMax() {
         Key max = pq[1];
-        exch(N--, 1);
+        exch(1, N--);
         pq[N + 1] = null;
         sink(1);
         return max;
@@ -54,8 +54,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
     // 上浮函数
     private void swim(int k) {
         while (k > 1) {
-            if (less(k / 2, k))
-                exch(k / 2, k);
+            if (less(k / 2, k)) exch(k / 2, k);
             k = k / 2;
         }
     }
